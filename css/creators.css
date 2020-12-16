@@ -1,0 +1,72 @@
+.img1{
+border: 1px solid #ddd;
+border-radius: 1px;
+padding: 7px;
+width: 150px;
+}
+.modal .modal-dialog-aside{ 
+  width: 350px; 
+  max-width:80%; 
+  height: 100%; 
+  margin:0;
+  transform: translate(0); 
+  transition: transform .2s;}
+.modal .modal-dialog-aside .modal-content{  
+  height: inherit; 
+  border:0; 
+  border-radius: 0;}
+.modal .modal-dialog-aside .modal-content .modal-body{ 
+  overflow-y: auto }
+.modal.fixed-left .modal-dialog-aside{ 
+  margin-right:auto;  
+  transform: translateX(-100%); }
+.modal.fixed-right .modal-dialog-aside{ 
+  margin-left:auto; transform: translateX(100%); }
+.modal.show .modal-dialog-aside{ 
+  transform: translateX(0);  }
+#modal2{
+  background-color:rgb(148, 180, 240);
+  border-bottom: black;
+}
+#modal3{
+  border-bottom: 1px solid black
+}
+#img1{
+  margin-left: auto;
+  margin-right: auto;
+}
+#modal4{
+  margin-top: 4cm
+}
+#p1{
+  font-size:large;
+  font-style:oblique;
+}
+#modal5{
+  border-top: 1px solid black
+}
+#btn2{
+  padding-left: 2cm;
+  padding-right: 2cm;
+  background-color: #004080;
+  border: none;
+  color: white;
+  font-weight:500 ;
+}
+nav{
+  margin-left: 4cm;
+  margin-right: 4cm;
+  margin-top: 0.7cm
+}
+.nav-link{
+  font-weight: 500;
+}
+.op-card5 {
+  opacity: .9;
+}
+body{
+  background-repeat: no-repeat;
+  background-position:top;
+  background-size: cover;
+  background-attachment: fixed;
+}

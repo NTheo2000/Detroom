@@ -1,0 +1,37 @@
+h5:before, h5:after{
+    content: "";
+    height: 3px;
+    width: 30%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+h5{
+    color: #636363;
+    position: relative;
+    
+}	
+h5:before{
+    left:0;
+}
+h5:after{
+    right: 0;
+}
+
+.modal-footer button{
+    padding-left: 1cm;padding-right: 1cm;font-weight: 500;
+}
+
+#name{
+    border:none;
+}
+
+#search{
+    border:none;
+}
+
+#description1{
+    width: 100%;
+    border:none;
+}

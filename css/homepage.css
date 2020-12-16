@@ -1,0 +1,107 @@
+body{
+    background-color: #cee3f8;
+    height: 100%;
+}
+
+html{
+    height: 100%;
+}
+
+#card1{
+    position:fixed;
+    border: 5px solid #eee;
+}
+
+#header1{
+    height: 140px;background-color: rgb(224, 224, 224);
+}
+
+#img1{
+    margin-top: -100px;width: 4cm;
+}
+
+#name2{
+    font-weight: 700;color: #004080;
+}
+
+#type2{
+    font-size: large;color: rgb(139, 131, 131);
+}
+
+#type2 small{
+    font-weight: 500;
+}
+
+.leftcard{
+    color:#004080
+}
+
+#a1{
+    text-decoration: none;color: #004080;
+}
+
+.fa-globe{
+    padding-right: 7px;padding-left: 2px;
+}
+
+.fa-users{
+    padding-right: 5px
+}
+
+.fa-user{
+    padding-right: 5px;padding-left: 4px;
+}
+
+#img2{
+    border-radius: 50%;width: 40px;height: 40px;background-size: cover;
+}
+
+#img3{
+    border-radius: 50%;width: 40px;height: 40px;background-size: cover;
+}
+
+#img4{
+    border-radius: 50%;width: 40px;height: 40px;background-size: cover;
+}
+
+#card2{
+    border: 5px solid #eee;
+}
+
+#card3{
+    border: 5px solid #eee;
+}
+
+.rightcards{
+    text-align: center;padding-top: 10px;
+}
+
+.h6:hover{
+    color:#004080;
+}
+
+#card2 a{
+    text-decoration: none;
+}
+
+#card3 a{
+    text-decoration: none;
+}
+
+.h7 {
+    font-size: 0.8rem;
+}
+
+.gedf-wrapper {
+    margin-top: 0.97rem;
+}
+
+.publicationhead{
+    color: rgb(107, 106, 106);
+}
+#a2{
+    text-decoration:none;font-size: medium;color: rgb(85, 81, 81);
+}
+h5{
+    color: rgb(85, 81, 81);font-size: large;
+}
