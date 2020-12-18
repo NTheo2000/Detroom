@@ -4,19 +4,35 @@
 <%
 String auebmail = request.getParameter("auebmail");
 String password = request.getParameter("password");
-String userid = auebmail;
-int index = userid.indexOf("@");
-userid = userid.substring(0,index);
 
 try{
-    user1.authenticate(auebmail, password);
-    session.setAttribute("activeUser",user.findUsermail(auebmail));
+    StudentDAO studentdao = new StudentDAO();
+    Student student = studentdao.authenticateStudent(auebmail, password);
+    session.setAttribute("activeUser",studentdao.findStudent(auebmail));
+    session.setAttribute("userType","Student");
+
 %>
     <jsp:forward page="homepage.jsp"/>
 <%
 }catch(Exception e){
-    request.setAttribute("message", "Wrong username or password");
+    try{
+        ProfessorDAO professordao = new ProfessorDAO();
+        Professor professor = professordao.authenticateProfessor(auebmail, password);
+        session.setAttribute("activeUser",professordao.findProfessor(auebmail));
+        session.setAttribute("userType","Professor");
+
+%>
+    <jsp:forward page="homepage.jsp"/>
+<%    
+    }catch(Exception e1){
+        request.setAttribute("message1", e1.getMessage() );
+%>
+        <jsp:forward page="login.jsp"/>
+<% 
+    }
+    request.setAttribute("message1", e.getMessage() );
 %>
     <jsp:forward page="login.jsp"/>
-<% }
+<% 
+    }
 %>

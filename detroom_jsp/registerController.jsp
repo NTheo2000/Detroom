@@ -30,13 +30,13 @@ try{
         Student student = new Student (name,surname,auebmail,password,userid);
         StudentDAO studentdao = new StudentDAO();
         studentdao.registerStudent(student);
-        request.setAttribute( "message", "Success" );
+        request.setAttribute( "message2", "Registration Completed" );
         
     }else if(type.equals("Professor")){
         Professor professor = new Professor(name,surname,auebmail,password,userid);
         ProfessorDAO professordao = new ProfessorDAO();
         professordao.registerProfessor(professor);
-        request.setAttribute( "message", "Success" );
+        request.setAttribute( "message2", "Registration Completed" );
 
     }else{
         throw new Exception("Registration not completed try again");

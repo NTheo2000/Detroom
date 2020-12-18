@@ -57,7 +57,7 @@
                     </div>
                    </div>
                   <div class="form-group">
-                        <button type="submit" id="btn1"class="btn btn-primary btn-lg btn-block">Sign up for Detroom</button>
+                        <button type="submit" id="btn1"class="btn btn-primary btn-lg btn-block"data-toggle="modal" data-target="#registerModal">Sign up for Detroom</button>
                     </div>
                     <div class="form-group">
                         <p class="hint-text">By clicking “Sign up for Detroom”, you will be a part of us. We’ll occasionally send you account related email.</p>
@@ -76,6 +76,29 @@
       </script>
     <%}%>
     <%@ include file="aboutmodal.jsp" %>
+    <div id="registerModal" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+          </div>
+          <div class="modal-body text-center">
+                    <% if(request.getAttribute("message2") != null) { %>		
+                      <div class="alert alert-success" role="alert"><%=(String)request.getAttribute("message2") %></div>
+                      <% } %>
+          </div>
+          <div class="modal-body text-center">
+            <button class="btn btn-info" data-dismiss="modal"><span>Start Exploring</span></button>
+          </div>
+        </div>
+      </div>
+    </div>     
+    <%if(request.getAttribute("message2")!=null){%>
+      <script>
+        $(document).ready(function(){
+        $("#registerModal").modal("show");
+      });
+      </script>
+    <%}%>
 
  <nav class="navbar navbar-expand-lg">
     <%@ include file="navigationmenu1.jsp" %>
@@ -85,8 +108,8 @@
     <div id="div2" align="center">
       <div id="div3" class="card op-card5 border-primary mb-5 text-center">
             <form method="POST" action="<%=request.getContextPath() %>/Detroom/loginController.jsp">
-              <% if(request.getAttribute("message") != null) { %>		
-                <div class="alert alert-success" role="alert"><%=(String)request.getAttribute("message1") %></div>
+              <% if(request.getAttribute("message1") != null) { %>		
+                <div class="alert alert-danger" role="alert"><%=(String)request.getAttribute("message1") %></div>
               <% } %>
                 <div id="form1" class="form-group">
                     <label id="label1" for="exampleInputEmail1" style="margin-right: 9cm;">Email</label>
