@@ -34,7 +34,7 @@ public class StudentDAO {
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 
-				students.add( new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getInt("semester"), rs.getInt("entryYear"), rs.getString("favoriteSubject")) );
+				students.add( new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getInt("currentSemester"), rs.getInt("entryYear"), rs.getString("favoriteSubject")) );
 
 			}
 			rs.close();
@@ -81,8 +81,7 @@ public class StudentDAO {
 			if (!rs.next()) {
 				throw new Exception("Student with aueb email: " + auebmail + " not found");
 			}
-			Student student= new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("type"), rs.getString("imagePath"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getInt("semester"), rs.getInt("entryYear"), rs.getString("favoriteSubject"));
-
+			Student student= new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"),rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getInt("currentSemester"), rs.getInt("entryYear"), rs.getString("favoriteSubject"));
 			rs.close();
 			stmt.close();
 			db.close();
@@ -106,6 +105,45 @@ public class StudentDAO {
 		
 		
 	} //End of findStudent
+	public Student findStudentID(String userid) throws Exception {
+		DB db = new DB();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sqlQuery = "SELECT * FROM student WHERE idUser=?;";
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(sqlQuery);
+			stmt.setString(1, userid);
+
+			rs = stmt.executeQuery();
+			if (!rs.next()) {
+				throw new Exception("Student with aueb email: " + userid + " not found");
+			}
+			Student student= new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"),rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getInt("currentSemester"), rs.getInt("entryYear"), rs.getString("favoriteSubject"));
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return student;
+
+
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+
+			try {
+				db.close();
+			} catch (Exception e) {
+
+			}
+
+		}
+
+		
+		
+		
+	}
 
 	/**
 	 * This method is used to authenticate a student.
@@ -120,7 +158,7 @@ public class StudentDAO {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sqlQuery = "SELECT * FROM student WHERE auebmail=? AND password=? ;";
+		String sqlQuery = "SELECT * FROM student WHERE auebEmail=? AND password=? ;";
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(sqlQuery);
@@ -133,7 +171,7 @@ public class StudentDAO {
                 stmt.close();
                 throw new Exception("Wrong aueb email or password");
 			}
-			Student student= new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getInt("semester"), rs.getInt("entryYear"), rs.getString("favoriteSubject"));
+			Student student= new Student(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"),rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getInt("currentSemester"), rs.getInt("entryYear"), rs.getString("favoriteSubject"));
 
 			rs.close();
 			stmt.close();

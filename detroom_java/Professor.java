@@ -5,10 +5,10 @@ import java.util.Date;
 public class Professor extends User {
 	private String subject;
 
-	public Professor(String name, String surname, String password, String email, String type, String photo, String userid,
+	public Professor(String name, String surname, String password, String email, String photo, String userid,
 			String auebmail, String mobile, String location, String bio, String facebook, String linkedin,
 			Date dateofbirth, String subject) {
-		super(name, surname, password, email, type, photo, userid, auebmail, mobile, location, bio, facebook, dateofbirth);
+		super(name, surname, password, email, photo, userid, auebmail, mobile, location, bio, facebook,linkedin, dateofbirth);
 		this.subject = subject;
 		// TODO Auto-generated constructor stub
 	}

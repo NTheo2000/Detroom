@@ -34,7 +34,7 @@ public class ProfessorDAO {
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 
-				professors.add( new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("type"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getString("subject")) );
+				professors.add( new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject")) );
 
 			}
 			rs.close();
@@ -81,7 +81,7 @@ public class ProfessorDAO {
 			if (!rs.next()) {
 				throw new Exception("Professor with aueb email: " + auebmail + " not found");
 			}
-			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("type"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getString("subject"));
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
 
 			rs.close();
 			stmt.close();
@@ -106,6 +106,46 @@ public class ProfessorDAO {
 		
 		
 	} //End of findUser
+	public Professor findProfessorID(String userid) throws Exception {
+		DB db = new DB();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sqlQuery = "SELECT * FROM professor WHERE idUser=?;";
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(sqlQuery);
+			stmt.setString(1, userid);
+
+			rs = stmt.executeQuery();
+			if (!rs.next()) {
+				throw new Exception("Professor with aueb email: " + userid + " not found");
+			}
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return professor;
+
+
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+
+			try {
+				db.close();
+			} catch (Exception e) {
+
+			}
+
+		}
+
+		
+		
+		
+	}
 
 	/**
 	 * This method is used to authenticate a professor.
@@ -120,7 +160,7 @@ public class ProfessorDAO {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sqlQuery = "SELECT * FROM professor WHERE auebmail=? AND password=? ;";
+		String sqlQuery = "SELECT * FROM professor WHERE auebEmail=? AND password=? ;";
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(sqlQuery);
@@ -133,7 +173,7 @@ public class ProfessorDAO {
                 stmt.close();
                 throw new Exception("Wrong aueb email or password");
 			}
-			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("type"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("bithdate"),rs.getString("subject"));
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
 
 			rs.close();
 			stmt.close();
@@ -184,7 +224,7 @@ public class ProfessorDAO {
 			}
 			rs.close();
 			stmt = con.prepareStatement(sql1);
-			stmt.setString(1,professor.getAuebmail());
+			stmt.setString(1,professor.getUserid());
 			stmt.executeUpdate();
             stmt = con.prepareStatement(sql);
 
