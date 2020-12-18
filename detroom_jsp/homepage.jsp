@@ -373,33 +373,10 @@
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2" id="img4" style="background-image: url('../images/nikolas.png')"></div>
-                                <div class="ml-2">
-                                    <div class="h6 m-0"><a class="publicationhead" href="#">Nikolas Theofanopoulos</a></div>
-                                    <div class="h7 text-muted">Student</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 40 min ago </div>
-                            <h5 class="card-title" style="color: rgb(85, 81, 81);font-size: large;">Lost my economics book</h5>
-                        <p class="card-text">
-                            I forgot my economics book in A31 yesterday. If you find it, please contact me.                
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                    </div>
-                </div>
+                <%
+                 }
+                }
+                %>
             </div>
             <div>
              <div class="col-md-3" style="position: fixed;">
