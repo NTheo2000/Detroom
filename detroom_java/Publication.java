@@ -1,6 +1,6 @@
 package detroom_java;
 
-import java.io.InputStream;
+
 import java.sql.Timestamp;
 
 
@@ -14,7 +14,7 @@ public class Publication {
     private String idUser;
     private int idTeam;
     private String content;
-    private InputStream uploadFile;
+    private String uploadFilePath;
     private Timestamp creationDate;
     private int likes;
     private String type; // vision
@@ -29,11 +29,11 @@ public class Publication {
 	 * @param password
 	 */
 
-    public Publication(String idUser, int idTeam, String content, InputStream uploadFile,Timestamp creationDate, int likes, String type) {
+    public Publication(String idUser, int idTeam, String content, String uploadFilePath,Timestamp creationDate, int likes, String type) {
         this.idUser = idUser;
         this.idTeam = idTeam;
         this.content = content;
-        this.uploadFile = uploadFile;
+        this.uploadFilePath = uploadFilePath;
         this.creationDate = creationDate;
         this.likes = likes;
         this.type = type;
@@ -121,16 +121,16 @@ public class Publication {
 	 * @param content the content to set
 	 */
 
-    public void setUploadFile(InputStream uploadFile){
-        this.uploadFile = uploadFile;
+    public void setUploadFilePath(String uploadFilePath){
+        this.uploadFilePath = uploadFilePath;
     }
 
     /**
 	 * @return the content of publication
 	 */
 
-    public InputStream getUploadFile(){
-        return this.uploadFile;
+    public String getUploadFilePath(){
+        return this.uploadFilePath;
     }
 
     /**

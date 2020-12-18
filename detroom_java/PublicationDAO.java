@@ -3,7 +3,7 @@ package detroom_java;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.*;
-import java.io.InputStream;
+
 
 
 
@@ -21,7 +21,7 @@ public class PublicationDAO {
             stmt = con.prepareStatement(query);
             stmt.setInt(1, idTeam);
             stmt.setString(2, typeUser);
-            stmt.setString(3, "Public");
+            stmt.setString(3, "public");
             rs = stmt.executeQuery();
             if(rs.next()){
                 rs.previous();
@@ -49,42 +49,29 @@ public class PublicationDAO {
         }
     }
 
-    public void post(Publication pub) throws Exception{
+    public String post(Publication pub) throws Exception{
         DB db = new DB();
         Connection con = null;
         PreparedStatement stmt = null;
-        PreparedStatement stmt2 = null;
-        ResultSet rs = null;
-        String query = "SELECT * FROM publication;";
-        int rs2;
-        String query2 = "INSERT INTO publication (idPublication,idUser,idTeam,content,uploadFile,creationDate,likes,vision) VALUES (?,?,?,?,?,?,?,?);";
+        int rs;
+        String query = "INSERT INTO publication (idUser,idTeam,content,uploadFile,creationDate,likes,vision) VALUES (?,?,?,?,?,?,?);";
         try{
             con = db.getConnection();
             stmt = con.prepareStatement(query);
-            rs = stmt.executeQuery();
-            int idPublication = 0;
-            if (rs != null) { 
-                rs.last();
-                idPublication = rs.getRow() + 1;
-            }
-            stmt2 = con.prepareStatement(query2);
-            stmt2.setInt(1, idPublication);
-            stmt2.setString(2,pub.getIdUser());
-            stmt2.setInt(3,pub.getIdTeam());
-            stmt2.setString(4,pub.getContent());
-            stmt2.setBlob(5, pub.getUploadFile());
-            stmt2.setTimestamp(6, pub.getCreationDate());
-            stmt2.setInt(7,pub.getLikes());
-            stmt2.setString(8,pub.getType());
-            rs2 = stmt2.executeUpdate();
-            if (rs2 > 0) {
-                stmt.close();
-                db.close();
-                throw new Exception("Succesfull publication!");
+            stmt.setString(1,pub.getIdUser());
+            stmt.setInt(2,pub.getIdTeam());
+            stmt.setString(3,pub.getContent());
+            stmt.setString(4, pub.getUploadFilePath());
+            stmt.setTimestamp(5, pub.getCreationDate());
+            stmt.setInt(6,pub.getLikes());
+            stmt.setString(7,pub.getType());
+            rs = stmt.executeUpdate();
+            stmt.close();
+            db.close();
+            if (rs > 0) {
+                return "Succesfull publication!";
             } else{
-                stmt.close();
-                db.close();
-                throw new Exception("Unsuccesfull publication!");
+                return "Unsuccesfull publication!";
             }
         } catch(Exception e) {
             throw new Exception(e.getMessage());
