@@ -66,7 +66,7 @@
          if (vision.equals("")){
             request.setAttribute("info","You have to select the vision of publication!");
 %>
-         <jsp:forward page="example.jsp"/>    
+         <jsp:forward page="homepage.jsp"/>    
 <%            
          }
          if (!content.equals("")){
@@ -78,14 +78,14 @@
          String message = pubdao.post(pub);
          request.setAttribute("info", message);
 %>
-         <jsp:forward page="example.jsp"/>          
+         <jsp:forward page="homepage.jsp"/>          
 <%   
          }catch(Exception e) {
             if (!content.equals("")){
                 if (vision.equals("")){
                     request.setAttribute("info","You have to select the vision of publication!");
 %>              
-                    <jsp:forward page="example.jsp"/>    
+                    <jsp:forward page="homepage.jsp"/>    
 <%            
                 }
                 Publication pub = new Publication(activeUser.getUserid(),0,content,null,new Timestamp(System.currentTimeMillis()),0,vision);
@@ -93,19 +93,19 @@
                 String message = pubdao.post(pub);
                 request.setAttribute("info", message);
 %>
-                <jsp:forward page="example.jsp"/>
+                <jsp:forward page="homepage.jsp"/>
 <%
             } else {
                 request.setAttribute("info","You did not post anything!");
 %>  
-                <jsp:forward page="example.jsp"/>
+                <jsp:forward page="homepage.jsp"/>
 <%
             }
          }        
     } else {
         request.setAttribute("info","Wrong");
 %>
-        <jsp:forward page="example.jsp"/>          
+        <jsp:forward page="homepage.jsp"/>          
 <%
     }
 %>
