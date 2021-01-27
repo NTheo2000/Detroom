@@ -6,8 +6,9 @@
   <head>
     <%@ include file="header1.jsp"%>
     <title>Detroom | Sign in or sign up</title>
+    <link rel = "icon" href ="https://i.ibb.co/r3C9JQ6/img6.png"   type = "image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/logins.css">
+    <link rel="stylesheet" type="text/css" href="css/logins.css">
     <style>
       .dropdown-item{
         background: none;
@@ -19,7 +20,7 @@
 
   </head>
   
-  <body style=" background-image: url('../images/opa2.jpg');">
+  <body style=" background-image: url('images/opa2.jpg');">
    
     <div id="signUp" class="modal fade">
         <div class="modal-dialog">
@@ -57,13 +58,13 @@
                     </div>
                    </div>
                   <div class="form-group">
-                        <button type="submit" id="btn1"class="btn btn-primary btn-lg btn-block"data-toggle="modal" data-target="#registerModal">Sign up for Detroom</button>
+                        <button type="submit" id="btn1"class="btn btn-primary btn-lg btn-block"data-toggle="modal" >Sign up for Detroom</button>
                     </div>
                     <div class="form-group">
                         <p class="hint-text">By clicking “Sign up for Detroom”, you will be a part of us. We’ll occasionally send you account related email.</p>
                     </div>
                 </form>
-              <div class="text-center" id="div1">Already to Detroom? <a href="login.html" id="a1">Sign in</a></div>
+              <div class="text-center" id="div1">Already to Detroom? <a href="login.jsp" id="a1">Sign in</a></div>
             </div>
             </div>
         </div>
@@ -82,9 +83,9 @@
           <div class="modal-header justify-content-center">
           </div>
           <div class="modal-body text-center">
-                    <% if(request.getAttribute("message2") != null) { %>		
+                    		
                       <div class="alert alert-success" role="alert"><%=(String)request.getAttribute("message2") %></div>
-                      <% } %>
+                      
           </div>
           <div class="modal-body text-center">
             <button class="btn btn-info" data-dismiss="modal"><span>Start Exploring</span></button>
@@ -107,7 +108,7 @@
 
     <div id="div2" align="center">
       <div id="div3" class="card op-card5 border-primary mb-5 text-center">
-            <form method="POST" action="<%=request.getContextPath() %>/Detroom/loginController.jsp">
+            <form method="POST" action="<%=request.getContextPath() %>/loginController.jsp">
               <% if(request.getAttribute("message1") != null) { %>		
                 <div class="alert alert-danger" role="alert"><%=(String)request.getAttribute("message1") %></div>
               <% } %>

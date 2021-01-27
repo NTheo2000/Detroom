@@ -1,11 +1,11 @@
 <%@ page import="detroom_java.*"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-String name = (String)request.getParameter("name");
-String surname = (String)request.getParameter("surname");
-String auebmail = request.getParameter("auebmail");
-String password = (String)request.getParameter("password");
-String confirm_password = (String)request.getParameter("confirm_password");
+String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
+String surname = new String(request.getParameter("surname").getBytes("ISO-8859-1"), "UTF-8");
+String auebmail = (String)request.getParameter("auebmail");
+String password = new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
+String confirm_password = new String(request.getParameter("confirm_password").getBytes("ISO-8859-1"), "UTF-8");
 String type = (String)request.getParameter("usertype");
 String userid = auebmail;
 int index = userid.indexOf("@");
@@ -30,13 +30,13 @@ try{
         Student student = new Student (name,surname,auebmail,password,userid);
         StudentDAO studentdao = new StudentDAO();
         studentdao.registerStudent(student);
-        request.setAttribute( "message2", "Registration Completed" );
+        request.setAttribute( "message2", "Registration Completed " + name );
         
     }else if(type.equals("Professor")){
         Professor professor = new Professor(name,surname,auebmail,password,userid);
         ProfessorDAO professordao = new ProfessorDAO();
         professordao.registerProfessor(professor);
-        request.setAttribute( "message2", "Registration Completed" );
+        request.setAttribute( "message2", "Registration Completed professor " + surname );
 
     }else{
         throw new Exception("Registration not completed try again");

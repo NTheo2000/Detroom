@@ -3,13 +3,13 @@
 
 <%
 String auebmail = request.getParameter("auebmail");
-String password = request.getParameter("password");
+String password = new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
 try{
     StudentDAO studentdao = new StudentDAO();
     Student student = studentdao.authenticateStudent(auebmail, password);
     session.setAttribute("activeUser",studentdao.findStudent(auebmail));
-    session.setAttribute("userType","Student");
+    session.setAttribute("userType","student");
 
 %>
     <jsp:forward page="homepage.jsp"/>
@@ -19,7 +19,7 @@ try{
         ProfessorDAO professordao = new ProfessorDAO();
         Professor professor = professordao.authenticateProfessor(auebmail, password);
         session.setAttribute("activeUser",professordao.findProfessor(auebmail));
-        session.setAttribute("userType","Professor");
+        session.setAttribute("userType","professor");
 
 %>
     <jsp:forward page="homepage.jsp"/>
