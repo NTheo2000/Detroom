@@ -1,6 +1,6 @@
 package detroom_java;
 
-import java.util.Date;
+import java.sql.Time;
 
 public abstract class User {
 	private String name;
@@ -15,7 +15,7 @@ public abstract class User {
 	private String bio;
 	private String facebook;
 	private String linkedin;
-	private Date dateofbirth;
+	private String dateofbirth;
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", surname=" + surname + ", password=" + password + ", email=" + email + ", photo=" + photo + ", userid=" + userid + ", auebmail=" + auebmail + ", mobile=" + mobile
@@ -33,7 +33,7 @@ public abstract class User {
 	
 	public User(String name, String surname, String password, String email, String photo, String userid,
 			String auebmail, String mobile, String location, String bio, String facebook, String linkedin,
-			Date dateofbirth) {
+			String dateofbirth) {
 		this.name = name;
 		this.surname = surname;
 		this.password = password;
@@ -120,10 +120,10 @@ public abstract class User {
 	public void setLinkedin(String linkedin) {
 		this.linkedin = linkedin;
 	}
-	public Date getDateofbirth() {
+	public String getDateofbirth() {
 		return dateofbirth;
 	}
-	public void setDateofbirth(Date dateofbirth) {
+	public void setDateofbirth(String dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
 	

@@ -34,7 +34,7 @@ public class ProfessorDAO {
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 
-				professors.add( new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject")) );
+				professors.add( new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getString("birthdate"),rs.getString("subject")) );
 
 			}
 			rs.close();
@@ -81,7 +81,7 @@ public class ProfessorDAO {
 			if (!rs.next()) {
 				throw new Exception("Professor with aueb email: " + auebmail + " not found");
 			}
-			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getString("birthdate"),rs.getString("subject"));
 
 			rs.close();
 			stmt.close();
@@ -119,9 +119,9 @@ public class ProfessorDAO {
 
 			rs = stmt.executeQuery();
 			if (!rs.next()) {
-				throw new Exception("Professor with aueb email: " + userid + " not found");
+				return null;
 			}
-			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getString("birthdate"),rs.getString("subject"));
 
 			rs.close();
 			stmt.close();
@@ -146,6 +146,49 @@ public class ProfessorDAO {
 		
 		
 	}
+	
+	public Professor findProfessorName(String surname) throws Exception {
+		DB db = new DB();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sqlQuery = "SELECT * FROM professor WHERE surname=?;";
+		try {
+			con = db.getConnection();
+			stmt = con.prepareStatement(sqlQuery);
+			stmt.setString(1, surname);
+
+			rs = stmt.executeQuery();
+			if (!rs.next()) {
+				return null;
+			}
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getString("birthdate"),rs.getString("subject"));
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return professor;
+
+
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+
+			try {
+				db.close();
+			} catch (Exception e) {
+
+			}
+
+		}
+
+		
+		
+		
+	}
+	
+
 
 	/**
 	 * This method is used to authenticate a professor.
@@ -173,7 +216,7 @@ public class ProfessorDAO {
                 stmt.close();
                 throw new Exception("Wrong aueb email or password");
 			}
-			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getDate("birthdate"),rs.getString("subject"));
+			Professor professor = new Professor(rs.getString("name"), rs.getString("surname"), rs.getString("password"), rs.getString("personalEmail"), rs.getString("imagePath"), rs.getString("idUser"),rs.getString("auebEmail"),rs.getString("phoneNumber"), rs.getString("location"),rs.getString("bio"),rs.getString("facebook"), rs.getString("linkedin"), rs.getString("birthdate"),rs.getString("subject"));
 
 			rs.close();
 			stmt.close();
@@ -209,13 +252,13 @@ public class ProfessorDAO {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sqlQuery = "SELECT * FROM professor WHERE auebEmail=?;";
+		String sqlQuery = "SELECT * FROM user WHERE idUser=?;";
 		String sql = "INSERT INTO professor(idUser,subject,name,surname,personalEmail,password,imagePath,phoneNumber,location,auebEmail,facebook,linkedin,birthdate,bio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		String sql1 = "INSERT INTO user(idUser) VALUES (?);";
 		try {
 			con = db.getConnection();
 			stmt = con.prepareStatement(sqlQuery);
-			stmt.setString(1,professor.getAuebmail());
+			stmt.setString(1,professor.getUserid());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
                 rs.close();
@@ -266,5 +309,53 @@ public class ProfessorDAO {
 		
 		
 	}//end of register
+	public void editProfessor(Professor professor) throws Exception {
+		DB db = new DB();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
+		String deletesql = "DELETE FROM professor WHERE(idUser=?);";
+		String sql = "INSERT INTO professor(idUser,subject,name,surname,personalEmail,password,imagePath,phoneNumber,location,auebEmail,facebook,linkedin,birthdate,bio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		try {
+			con = db.getConnection();
+			stmt2 = con.prepareStatement(deletesql);
+			stmt2.setString(1,professor.getUserid());
+			stmt2.executeUpdate();
+			stmt2.close();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, professor.getUserid());           
+			stmt.setString(2, professor.getSubject());
+            stmt.setString(3, professor.getName());
+            stmt.setString(4, professor.getSurname());
+			stmt.setString(5, professor.getEmail());
+			stmt.setString(6, professor.getPassword());
+			stmt.setString(7, professor.getPhoto());
+			stmt.setString(8, professor.getMobile());
+			stmt.setString(9, professor.getLocation());
+			stmt.setString(10, professor.getAuebmail());
+			stmt.setString(11, professor.getFacebook());
+			stmt.setString(12, professor.getLinkedin());
+			stmt.setString(13, professor.getDateofbirth());
+			stmt.setString(14,professor.getBio());
+			stmt.executeUpdate();
+			stmt.close();
+			db.close();
+
+		} catch (Exception e) {
+            throw new Exception(e.getMessage());
+        } finally {
+
+            try {
+                db.close();
+            } catch (Exception e) {
+                
+            }
+
+        }
+			
+		
+			
+		
+	} //End of authenticate
 
 } //End of class

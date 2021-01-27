@@ -1,6 +1,7 @@
 package detroom_java;
 
-import java.util.Date;
+import java.sql.String;
+
 
 public class Student extends User{
 	private int semester;
@@ -9,7 +10,7 @@ public class Student extends User{
 
 	public Student(String name, String surname, String password, String email, String photo, String userid,
 			String auebmail, String mobile, String location, String bio, String facebook, String linkedin,
-			Date dateofbirth, int semester,int entry_year,String favorite_subject) {
+			String dateofbirth, int semester,int entry_year,String favorite_subject) {
 		super(name, surname, password, email, photo, userid, auebmail, mobile, location, bio, facebook,linkedin, dateofbirth);
 		this.semester = semester;
 		this.entry_year = entry_year;
