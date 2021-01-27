@@ -6,10 +6,10 @@
   <head>
     <%@ include file="header1.jsp"%>  
     <title>Creators</title>
-    <link rel="stylesheet" href="../css/creators.css">
+    <link rel="stylesheet" href="css/creators.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <body style=" background-image: url('../images/opa2.jpg');">
+  <body style=" background-image: url('images/opa2.jpg');">
     
     <%@ include file="aboutmodal.jsp" %>
 
@@ -23,7 +23,7 @@
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="../images/dimitris.jpg" width="200" height="150">
+              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="images/dimitris.jpg" width="200" height="150">
             </a>
           </div>
           <div class="media-body">
@@ -34,7 +34,7 @@
         <div class="media">
           <div class="media-left"> 
             <a href="#">
-              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="../images/miltos.jpg" width="200" height="150">
+              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="images/miltos.jpg" width="200" height="150">
             </a>
           </div>
           <div class="media-body">
@@ -45,7 +45,7 @@
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="../images/nikolas.png"
+              <img class="img1 img-lg rounded-circle mb-3 thumbnail" src="images/nikolas.png"
               width="200" height="150">
             </a>
           </div>
