@@ -39,11 +39,12 @@ public class Publication {
         this.type = type;
     }
 
-    public Publication(int idPublication, String idUser, int idTeam, String content, Timestamp creationDate, int likes, String type) {
+    public Publication(int idPublication, String idUser, int idTeam, String content, String uploadFilePath,Timestamp creationDate, int likes, String type) {
         this.idPublication = idPublication;
         this.idUser = idUser;
         this.idTeam = idTeam;
         this.content = content;
+        this.uploadFilePath = uploadFilePath;
         this.creationDate = creationDate;
         this.likes = likes;
         this.type = type;
