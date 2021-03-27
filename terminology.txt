@@ -1,1 +1,1 @@
-Detroom is a social network for our university which called AUEB.
+Detroom is a social network for our university which called AUEB. It's created by Nikos,Miltos and Dimitris.
